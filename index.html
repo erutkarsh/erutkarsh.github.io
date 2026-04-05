@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Utkarsh Srivastava — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --coral:#D85A30;--coral-l:#FAECE7;--coral-d:#993C1D;
+  --teal:#1D9E75;--teal-l:#E1F5EE;
+  --amber:#BA7517;--amber-l:#FAEEDA;
+  --purple:#7F77DD;--purple-l:#EEEDFE;
+  --blue:#378ADD;--blue-l:#E6F1FB;
+  --green:#639922;--green-l:#EAF3DE;
+  --bg:#0d0d0d;--surface:#181818;--surface2:#202020;
+  --text:#f2ede4;--muted:#666;--border:#252525;
+}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+.mono{font-family:'Space Mono',monospace}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(13,13,13,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Space Mono',monospace;font-size:0.95rem;font-weight:700;color:var(--coral)}
+.nav-links{display:flex;gap:1.8rem}
+.nav-links a{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);cursor:pointer;transition:color 0.2s;text-decoration:none}
+.nav-links a:hover{color:var(--text)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2.5rem 4rem;position:relative;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.14;pointer-events:none}
+.b1{width:500px;height:500px;background:var(--coral);top:-100px;right:-60px}
+.b2{width:350px;height:350px;background:var(--teal);bottom:-60px;left:-60px}
+.b3{width:250px;height:250px;background:var(--green);top:50%;left:40%}
+.hero-inner{position:relative;z-index:1;max-width:860px}
+.badge{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem}
+.badge::before{content:'';width:22px;height:1.5px;background:var(--teal)}
+h1.name{font-size:clamp(3rem,8vw,5.8rem);font-weight:800;line-height:1;letter-spacing:-0.04em;margin-bottom:0.4rem}
+h1.name span{color:var(--coral)}
+.hero-sub{font-family:'Space Mono',monospace;font-size:clamp(0.72rem,1.8vw,0.9rem);color:var(--muted);margin-bottom:1.8rem;line-height:1.8}
+.hero-desc{font-size:0.97rem;color:#c5bfb5;line-height:1.8;max-width:580px;margin-bottom:2.5rem}
+.ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-p{background:var(--coral);color:#fff;border:none;padding:0.78rem 1.8rem;font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;cursor:pointer;transition:all 0.2s}
+.btn-p:hover{background:var(--coral-d);transform:translateY(-2px)}
+.btn-s{background:transparent;color:var(--text);border:1px solid var(--border);padding:0.78rem 1.8rem;font-family:'Space Mono',monospace;font-size:0.72rem;cursor:pointer;letter-spacing:0.06em;transition:all 0.2s}
+.btn-s:hover{border-color:var(--coral);color:var(--coral)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.s-num{font-size:2rem;font-weight:800;color:var(--coral);line-height:1}
+.s-lbl{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);margin-top:0.2rem}
+
+section{padding:5rem 2.5rem}
+.s-tag{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--teal);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.5rem}
+.s-tag::before{content:'';width:16px;height:1.5px;background:var(--teal)}
+.s-title{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:3rem}
+.s-title em{font-style:normal;color:var(--teal)}
+
+.cert-banner{display:flex;align-items:center;gap:1.5rem;padding:1.5rem 2rem;border:1px solid var(--green);background:rgba(99,153,34,0.06);margin-bottom:3rem}
+.cert-icon{font-size:2rem;flex-shrink:0}
+.cert-title{font-size:1rem;font-weight:700;margin-bottom:0.3rem}
+.cert-meta{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted)}
+.cert-id{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);margin-top:0.3rem}
+
+.exp-item{display:grid;grid-template-columns:150px 1fr;gap:2rem;padding:2.5rem 0;border-top:1px solid var(--border)}
+.exp-item:last-child{border-bottom:1px solid var(--border)}
+.exp-date{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);line-height:1.7}
+.exp-co{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--coral);letter-spacing:0.06em;margin-bottom:0.3rem}
+.exp-role{font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.8rem}
+.exp-points{font-size:0.86rem;color:#bbb;line-height:1.75;margin-bottom:1rem;padding-left:1.1rem}
+.exp-points li{margin-bottom:0.4rem}
+.tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.tag{font-family:'Space Mono',monospace;font-size:0.6rem;padding:0.25rem 0.6rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.04em}
+
+.stack-bg{background:var(--surface)}
+.stack-section-label{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.6rem 0;margin-bottom:0.8rem;margin-top:2rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.stack-section-label:first-of-type{margin-top:0}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:1px;background:var(--border)}
+.tech-cell{background:var(--surface);padding:1.3rem 0.7rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;transition:background 0.15s;cursor:default}
+.tech-cell:hover{background:var(--surface2)}
+.t-icon{font-size:1.5rem}
+.t-name{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);text-align:center;line-height:1.4}
+.t-bar{width:34px;height:2.5px;background:var(--border);overflow:hidden}
+.t-fill{height:100%}
+
+.proj-subsection-label{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;margin-top:2.5rem}
+.proj-subsection-label:first-of-type{margin-top:0}
+.psl-line{flex:1;height:1px;background:var(--border)}
+.psl-text{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;padding:0 0.5rem}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1px;background:var(--border);margin-bottom:1px}
+.proj-card{background:var(--surface);padding:1.8rem;display:flex;flex-direction:column;gap:0.8rem;transition:background 0.15s}
+.proj-card:hover{background:var(--surface2)}
+.proj-accent{height:2.5px;width:100%}
+.proj-num{font-family:'Space Mono',monospace;font-size:0.62rem;color:#3a3a3a}
+.proj-name{font-size:1.05rem;font-weight:700;letter-spacing:-0.02em}
+.proj-desc{font-size:0.83rem;color:#bbb;line-height:1.65;flex:1}
+.proj-link{font-family:'Space Mono',monospace;font-size:0.63rem;color:var(--teal);cursor:pointer;background:none;border:none;padding:0;transition:color 0.2s;text-align:left;text-decoration:none;display:inline-block}
+.proj-link:hover{color:#5DCAA5}
+
+.skills-bg{background:var(--surface)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.4rem}
+.skill-card{padding:1.5rem;border:1px solid var(--border)}
+.sk-head{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.1rem}
+.sk-bar{margin-bottom:0.85rem}
+.sk-label{display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.3rem}
+.sk-label span:last-child{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted)}
+.sk-track{height:2.5px;background:var(--border)}
+.sk-fill{height:100%}
+
+.awards-bg{background:var(--surface)}
+.award-row{display:grid;grid-template-columns:65px 1fr 42px;align-items:center;gap:1.5rem;padding:1.5rem 1.8rem;border-top:1px solid var(--border);transition:background 0.15s}
+.award-row:last-child{border-bottom:1px solid var(--border)}
+.award-row:hover{background:var(--surface2)}
+.aw-yr{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted)}
+.aw-name{font-size:0.92rem;font-weight:700;margin-bottom:0.2rem}
+.aw-org{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted)}
+.aw-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+
+.contact-bg{background:var(--surface)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-h{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-0.04em;line-height:1.1;margin-bottom:1.1rem}
+.contact-h span{color:var(--coral)}
+.contact-sub{color:#bbb;font-size:0.9rem;line-height:1.75}
+.c-links{display:flex;flex-direction:column;gap:0.85rem;margin-top:1.6rem}
+.c-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;border:1px solid var(--border);transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text)}
+.c-link:hover{border-color:var(--coral);background:rgba(216,90,48,0.04)}
+.c-icon{width:32px;height:32px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;font-family:'Space Mono',monospace;font-weight:700}
+.c-lbl{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);display:block;margin-bottom:0.12rem}
+.c-val{font-family:'Space Mono',monospace;font-size:0.7rem}
+
+footer{padding:1.8rem 2.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.foot{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted)}
+
+@media(max-width:680px){
+  nav{padding:1rem 1.2rem}.nav-links{gap:1rem}
+  section{padding:3.5rem 1.2rem}
+  .hero{padding:6rem 1.2rem 3rem}
+  .exp-item{grid-template-columns:1fr;gap:0.4rem}.exp-date{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">US.dev</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#stack">Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="hero-inner">
+    <div class="badge">Open to new opportunities · Lucknow, India</div>
+    <h1 class="name">Utkarsh<br><span>Srivastava</span></h1>
+    <p class="hero-sub mono">Application Engineer · Database Specialist · EV Systems Engineer</p>
+    <p class="hero-desc">Software engineer with 2 years of enterprise experience in SQL, PL/SQL, and backend data systems — now expanding into Electric Vehicle engineering with hands-on simulation projects in MATLAB/Simulink. Bridging software and clean energy.</p>
+    <div class="ctas">
+      <button class="btn-p" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+      <button class="btn-s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="s-num">2+</div><div class="s-lbl mono">Yrs. Experience</div></div>
+      <div><div class="s-num">7+</div><div class="s-lbl mono">Projects</div></div>
+      <div><div class="s-num">2</div><div class="s-lbl mono">Domains</div></div>
+      <div><div class="s-num">2026</div><div class="s-lbl mono">EV Certified</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="s-tag">Work History</div>
+  <h2 class="s-title">Work <em>Experience</em></h2>
+
+  <div class="cert-banner">
+    <div class="cert-icon">⚡</div>
+    <div>
+      <div class="cert-title">Advanced Certificate Program in Electric Vehicle</div>
+      <div class="cert-meta mono">Intellipaat Software Solutions Pvt. Ltd. · Issued January 6, 2026</div>
+      <div class="cert-id mono">Certificate ID: 31679-711792-298716 · Verified</div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-date mono">Jul 2021 –<br>Jun 2023<br><br><span style="color:var(--coral);font-size:0.6rem">FULL-TIME</span></div>
+    <div>
+      <div class="exp-co mono">Newgen Software Technologies Ltd.</div>
+      <div class="exp-role">Application Engineer</div>
+      <ul class="exp-points">
+        <li>Developed and optimized SQL queries and stored procedures for data extraction in enterprise banking workflows.</li>
+        <li>Performed query optimization and indexing to reduce execution time and enhance database throughput.</li>
+        <li>Provided production support — SQL troubleshooting, bug fixing, and SLA-driven change request handling.</li>
+        <li>Executed unit, integration, and UAT testing; coordinated Go-Live stabilization ensuring high system availability.</li>
+        <li>Designed reporting queries to power business analytics and data validation across banking operations.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">SQL</span><span class="tag">PL/SQL</span><span class="tag">Stored Procedures</span><span class="tag">Query Optimization</span><span class="tag">UAT</span><span class="tag">Production Support</span><span class="tag">ECM/BPM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-date mono">Internship<br><br><span style="color:var(--teal);font-size:0.6rem">DATA SCIENCE</span></div>
+    <div>
+      <div class="exp-co mono">GreyAtom</div>
+      <div class="exp-role">Data Science Intern</div>
+      <ul class="exp-points">
+        <li>Applied Python for data wrangling, analysis, and visualization using Pandas, NumPy, and Matplotlib.</li>
+        <li>Used Git for version control and collaborative development on research projects.</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Git</span></div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-date mono">Internship<br><br><span style="color:var(--purple);font-size:0.6rem">FRONTEND</span></div>
+    <div>
+      <div class="exp-co mono">SOFCON Pvt. Ltd.</div>
+      <div class="exp-role">Front-End Developer Intern</div>
+      <ul class="exp-points">
+        <li>Built responsive web interfaces using HTML, CSS, and JavaScript including a to-do app and personal portfolio site.</li>
+      </ul>
+      <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack" class="stack-bg">
+  <div class="s-tag">Tools & Technologies</div>
+  <h2 class="s-title">Tech <em>Stack</em></h2>
+
+  <div class="stack-section-label mono">Database & Backend</div>
+  <div class="tech-grid" style="margin-bottom:1px">
+    <div class="tech-cell"><div class="t-icon">🗄️</div><div class="t-name mono">SQL</div><div class="t-bar"><div class="t-fill" style="width:95%;background:var(--coral)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">🔧</div><div class="t-name mono">PL/SQL</div><div class="t-bar"><div class="t-fill" style="width:90%;background:var(--coral)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">📊</div><div class="t-name mono">Data Modelling</div><div class="t-bar"><div class="t-fill" style="width:84%;background:var(--coral)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">📋</div><div class="t-name mono">Report Dev.</div><div class="t-bar"><div class="t-fill" style="width:85%;background:var(--amber)"></div></div></div>
+  </div>
+
+  <div class="stack-section-label mono">Programming Languages</div>
+  <div class="tech-grid" style="margin-bottom:1px">
+    <div class="tech-cell"><div class="t-icon">🐍</div><div class="t-name mono">Python</div><div class="t-bar"><div class="t-fill" style="width:80%;background:var(--teal)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">☕</div><div class="t-name mono">Java</div><div class="t-bar"><div class="t-fill" style="width:68%;background:var(--blue)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">🟡</div><div class="t-name mono">JavaScript</div><div class="t-bar"><div class="t-fill" style="width:72%;background:var(--amber)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">🌐</div><div class="t-name mono">HTML / CSS</div><div class="t-bar"><div class="t-fill" style="width:75%;background:var(--green)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">🔷</div><div class="t-name mono">VB.net</div><div class="t-bar"><div class="t-fill" style="width:62%;background:var(--purple)"></div></div></div>
+  </div>
+
+  <div class="stack-section-label mono">EV & Simulation Tools</div>
+  <div class="tech-grid">
+    <div class="tech-cell"><div class="t-icon">🔬</div><div class="t-name mono">MATLAB</div><div class="t-bar"><div class="t-fill" style="width:82%;background:var(--green)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">⚙️</div><div class="t-name mono">Simulink</div><div class="t-bar"><div class="t-fill" style="width:80%;background:var(--green)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">🔌</div><div class="t-name mono">Proteus</div><div class="t-bar"><div class="t-fill" style="width:65%;background:var(--teal)"></div></div></div>
+    <div class="tech-cell"><div class="t-icon">🔀</div><div class="t-name mono">Git</div><div class="t-bar"><div class="t-fill" style="width:80%;background:var(--purple)"></div></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-tag">Selected Work</div>
+  <h2 class="s-title">Featured <em>Projects</em></h2>
+
+  <div class="proj-subsection-label">
+    <div class="psl-line"></div>
+    <div class="psl-text mono" style="color:var(--green)">⚡ EV & Simulation Projects</div>
+    <div class="psl-line"></div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
+      <div class="proj-num mono">EV·01</div>
+      <div class="proj-name">EV Powertrain Model</div>
+      <p class="proj-desc">Full electric vehicle powertrain simulation in Simulink — models motor, inverter, battery, and drivetrain interaction. Evaluates torque, speed, and energy efficiency under real-world drive cycles.</p>
+      <div class="tags" style="margin-bottom:0.5rem"><span class="tag">Simulink</span><span class="tag">MATLAB</span><span class="tag">Motor Control</span><span class="tag">Powertrain</span></div>
+      <button class="proj-link">EV_POWERTRAIN_Model.slx →</button>
+    </div>
+    <div class="proj-card">
+      <div class="proj-accent" style="background:linear-gradient(90deg,var(--blue),var(--purple))"></div>
+      <div class="proj-num mono">EV·02</div>
+      <div class="proj-name">Regenerative Braking System</div>
+      <p class="proj-desc">PMSM-based regenerative braking simulation using MATLAB and Simulink. Models IGBT inverter, permanent magnet motor, rotational inertia, and energy recovery with scope output.</p>
+      <div class="tags" style="margin-bottom:0.5rem"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">PMSM</span><span class="tag">IGBT</span><span class="tag">Energy Recovery</span></div>
+      <button class="proj-link">RegenerativeBraking.slx + Regen_braking.m →</button>
+    </div>
+  </div>
+
+  <div class="proj-subsection-label" style="margin-top:3rem">
+    <div class="psl-line"></div>
+    <div class="psl-text mono" style="color:var(--coral)">💻 Software & Backend Projects</div>
+    <div class="psl-line"></div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-accent" style="background:linear-gradient(90deg,var(--coral),var(--amber))"></div>
+      <div class="proj-num mono">SW·01</div>
+      <div class="proj-name">Banking ECM & BPM Implementation</div>
+      <p class="proj-desc">Enterprise content and business process management for banking clients at Newgen. Delivered SQL data extraction, report validation, UAT coordination, and post-production SLA support.</p>
+      <div class="tags" style="margin-bottom:0.5rem"><span class="tag">SQL</span><span class="tag">PL/SQL</span><span class="tag">ECM</span><span class="tag">BPM</span><span class="tag">UAT</span></div>
+      <button class="proj-link">Newgen Software · 2021–2023 →</button>
+    </div>
+    <div class="proj-card">
+      <div class="proj-accent" style="background:linear-gradient(90deg,var(--purple),var(--teal))"></div>
+      <div class="proj-num mono">SW·02</div>
+      <div class="proj-name">DNA Translation Algorithm</div>
+      <p class="proj-desc">Python-based DNA translation system implementing a custom algorithm validated against NCBI DNA patterns — exploring bioinformatics at the intersection of code and genetics.</p>
+      <div class="tags" style="margin-bottom:0.5rem"><span class="tag">Python</span><span class="tag">Bioinformatics</span><span class="tag">Algorithm</span></div>
+      <a class="proj-link" href="https://github.com/erutkarsh/Projects-on-research-ofpython" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="s-tag">Expertise</div>
+  <h2 class="s-title">Core <em>Skills</em></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="sk-head mono" style="color:var(--coral)">Database & Query</div>
+      <div class="sk-bar"><div class="sk-label"><span>SQL / PL/SQL</span><span>95%</span></div><div class="sk-track"><div class="sk-fill" style="width:95%;background:var(--coral)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Query Optimization</span><span>88%</span></div><div class="sk-track"><div class="sk-fill" style="width:88%;background:var(--coral)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Stored Procedures</span><span>85%</span></div><div class="sk-track"><div class="sk-fill" style="width:85%;background:var(--coral)"></div></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-head mono" style="color:var(--green)">EV & Simulation</div>
+      <div class="sk-bar"><div class="sk-label"><span>MATLAB / Simulink</span><span>82%</span></div><div class="sk-track"><div class="sk-fill" style="width:82%;background:var(--green)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Powertrain Simulation</span><span>76%</span></div><div class="sk-track"><div class="sk-fill" style="width:76%;background:var(--green)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Power Electronics</span><span>72%</span></div><div class="sk-track"><div class="sk-fill" style="width:72%;background:var(--green)"></div></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-head mono" style="color:var(--teal)">Programming</div>
+      <div class="sk-bar"><div class="sk-label"><span>Python</span><span>80%</span></div><div class="sk-track"><div class="sk-fill" style="width:80%;background:var(--teal)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Java</span><span>68%</span></div><div class="sk-track"><div class="sk-fill" style="width:68%;background:var(--teal)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>JavaScript / VB.net</span><span>70%</span></div><div class="sk-track"><div class="sk-fill" style="width:70%;background:var(--teal)"></div></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-head mono" style="color:var(--purple)">Testing & Support</div>
+      <div class="sk-bar"><div class="sk-label"><span>UAT Support</span><span>90%</span></div><div class="sk-track"><div class="sk-fill" style="width:90%;background:var(--purple)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Production Support</span><span>88%</span></div><div class="sk-track"><div class="sk-fill" style="width:88%;background:var(--purple)"></div></div></div>
+      <div class="sk-bar"><div class="sk-label"><span>Bug Fixing / Debugging</span><span>85%</span></div><div class="sk-track"><div class="sk-fill" style="width:85%;background:var(--purple)"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="awards-bg">
+  <div class="s-tag">Recognition</div>
+  <h2 class="s-title">Awards & <em>Achievements</em></h2>
+  <div class="award-row">
+    <div class="aw-yr mono">2026</div>
+    <div><div class="aw-name">Advanced Certificate — Electric Vehicle Engineering</div><div class="aw-org mono">Intellipaat Software Solutions · Verified · ID: 31679-711792-298716</div></div>
+    <div class="aw-icon" style="background:rgba(99,153,34,0.15)">⚡</div>
+  </div>
+  <div class="award-row">
+    <div class="aw-yr mono">2018</div>
+    <div><div class="aw-name">Python Certification</div><div class="aw-org mono">Microsoft</div></div>
+    <div class="aw-icon" style="background:var(--blue-l)">🏅</div>
+  </div>
+  <div class="award-row">
+    <div class="aw-yr mono">2020</div>
+    <div><div class="aw-name">Runners-up · Football Fest</div><div class="aw-org mono">RMLNLU, Lucknow</div></div>
+    <div class="aw-icon" style="background:var(--amber-l)">🥈</div>
+  </div>
+  <div class="award-row">
+    <div class="aw-yr mono">2019</div>
+    <div><div class="aw-name">Runners-up · Football Fest</div><div class="aw-org mono">BBD, Lucknow</div></div>
+    <div class="aw-icon" style="background:var(--amber-l)">🥈</div>
+  </div>
+  <div class="award-row">
+    <div class="aw-yr mono">2018</div>
+    <div><div class="aw-name">Winner · 7-A Side Football Tournament</div><div class="aw-org mono">Barabanki Stadium</div></div>
+    <div class="aw-icon" style="background:var(--coral-l)">🏆</div>
+  </div>
+  <div class="award-row">
+    <div class="aw-yr mono">College</div>
+    <div><div class="aw-name">Coordinator · Dracula Dramatics Club</div><div class="aw-org mono">SRMCEM — Street plays on Child Labour, Mob-Lynching & education awareness</div></div>
+    <div class="aw-icon" style="background:var(--purple-l)">🎭</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="contact-grid">
+    <div>
+      <div class="s-tag">Get in Touch</div>
+      <h2 class="contact-h">Let's build something <span>great.</span></h2>
+      <p class="contact-sub">Open to roles in Database Engineering, Data Analytics, EV Software, or Backend Development. Based in Lucknow, UP. Bridging enterprise software experience with next-gen EV technology.</p>
+    </div>
+    <div class="c-links">
+      <a class="c-link" href="mailto:erutkarsh16@gmail.com">
+        <div class="c-icon">✉</div>
+        <div><span class="c-lbl">Email</span><span class="c-val mono">erutkarsh16@gmail.com</span></div>
+      </a>
+      <a class="c-link" href="https://www.linkedin.com/in/utkarsh-srivastava07" target="_blank">
+        <div class="c-icon">in</div>
+        <div><span class="c-lbl">LinkedIn</span><span class="c-val mono">utkarsh-srivastava07</span></div>
+      </a>
+      <a class="c-link" href="https://www.github.com/erutkarsh" target="_blank">
+        <div class="c-icon">⎇</div>
+        <div><span class="c-lbl">GitHub</span><span class="c-val mono">github.com/erutkarsh</span></div>
+      </a>
+      <div class="c-link">
+        <div class="c-icon">📍</div>
+        <div><span class="c-lbl">Location</span><span class="c-val mono">Lucknow, Uttar Pradesh, India</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot mono">© 2026 Utkarsh Srivastava — All rights reserved.</span>
+  <span class="foot mono" style="color:var(--coral)">Software · Database · EV Engineering</span>
+</footer>
+
+</body>
+</html>
